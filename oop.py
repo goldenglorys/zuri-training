@@ -1,4 +1,12 @@
 class Budget:
+    """
+        Budget App
+        Create a Budget class that can instantiate objects based on different budget categories like food, clothing, and entertainment. These objects should allow for
+            1.  Depositing funds to each of the categories
+            2.  Withdrawing funds from each category
+            3.  Computing category balances
+            4.  Transferring balance amounts between categories
+    """
     def __init__(self):
         self.food_balance = 100
         self.clothing_balance = 100
@@ -32,8 +40,11 @@ class Budget:
         elif category == 'clothing':
             return "Total balance for clothing category: " + str(self.clothing_balance)
         elif category == 'entertainment':
-            return "Total balance for entertainment category: "+ str(self.entertainment_balance)
-
+            return "Total balance for entertainment category: " + str(self.entertainment_balance)
+            
+    # def transferBalance(self, from_cat, to_cat, amount):
+        
+        
 food = Budget()
 
 clothing = Budget()
