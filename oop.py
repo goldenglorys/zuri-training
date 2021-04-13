@@ -26,7 +26,14 @@ class Budget:
             self.entertainment_balance -= int(amount)
             return "Withdrawl amount to entertainment budget: "+ str(amount) + ". Total balance: " + str(self.entertainment_balance)
         
-        
+    def getBalance(self, category):
+        if category == 'food':
+            return "Total balance for food category: " + str(self.food_balance)
+        elif category == 'clothing':
+            return "Total balance for clothing category: " + str(self.clothing_balance)
+        elif category == 'entertainment':
+            return "Total balance for entertainment category: "+ str(self.entertainment_balance)
+
 food = Budget()
 
 clothing = Budget()
@@ -40,3 +47,7 @@ print(entertainment.depositFund('entertainment', 80))
 print(food.witdrawlFund('food', 10))
 print(clothing.witdrawlFund('clothing', 50))
 print(entertainment.witdrawlFund('entertainment', 80))
+
+print(food.getBalance('food'))
+print(food.getBalance('clothing'))
+print(food.getBalance('entertainment'))
