@@ -42,9 +42,17 @@ class Budget:
         elif category == 'entertainment':
             return "Total balance for entertainment category: " + str(self.entertainment_balance)
             
-    # def transferBalance(self, from_cat, to_cat, amount):
-        
-        
+    def transferBalance(self, from_cat, to_cat, amount):
+        category = {
+            'food': self.food_balance,
+            'clothing': self.clothing_balance,
+            'entertainment': self.entertainment_balance
+        }
+        from_balance = category[from_cat] - amount
+        to_balance = category[to_cat] + amount
+
+        return str(amount) + " transferd from " + str(from_cat) + " to " + str(to_cat) + ". Total "+str(to_cat)+ " balance: " + str(to_balance) + ". Total "+str(from_cat)+ " balance: " + str(from_balance)  
+
 food = Budget()
 
 clothing = Budget()
@@ -62,3 +70,5 @@ print(entertainment.witdrawlFund('entertainment', 80))
 print(food.getBalance('food'))
 print(food.getBalance('clothing'))
 print(food.getBalance('entertainment'))
+
+print(food.transferBalance('clothing', 'entertainment', 10))
