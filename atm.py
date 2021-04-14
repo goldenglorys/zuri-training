@@ -28,6 +28,7 @@ def init():
             print(register())
         else:
             print("You have selected an invalid option!")
+            init()
 
 def withdrawl():
     withdrawlAmount = input("How much would you want to witdrawl?")
@@ -75,6 +76,9 @@ def bankOperation(user):
         deposit()
     elif selectedOption == '3':
         complaint()
+    else:
+        print("Invalid option selected")
+        bankOperation(user)
 
 def login():
     print("============== Login to your account ===============")
@@ -88,18 +92,6 @@ def login():
                             isLoginSuccessful = True
         print("Invalid account or passowrd")
     bankOperation(userDetails)
-    # name = input("What is your username?\n")
-    # if name in allowedUsers:
-    #     password = input("What is your password?\n")
-    #     userId = allowedUsers.index(name)
-    #     if password in allowedPassword[userId]:
-    #         print("Welcome %s" % name)
-    #         print("Login date and time is %s" % datetime.datetime.now())
-    #         bankOperation() 
-    #     else:
-    #         print("Password Incorrect, please try again")
-    # else:
-    #     print("Name not found, please try again")
 
 print("Welcome to Mock bank!")
 init()
