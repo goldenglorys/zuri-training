@@ -16,16 +16,18 @@ allowedUsers = ["Zenith", "Edward"]
 allowedPassword = ["passwordZenith", "passwordEdward"]
 accountBalance = 0
 
+database = {}
+
 def init():
     isValidOptionSelected = False
     while isValidOptionSelected == False:
         haveAccount = int(input("Do you have an account with us: 1 (yes) 2 (no) \n"))
         if haveAccount == 1:
             isValidOptionSelected = True
-            loginInfo()
+            login()
         elif haveAccount == 2:
             isValidOptionSelected = True
-            register()
+            print(register())
         else:
             print("You have selected an invalid option!")
 
@@ -44,11 +46,23 @@ def complaint():
 
 
 def generateAccountNumber():
-    print("Generating account number...")
     return random.randint(1111111111, 9999999999)
 
 def register():
-    pass
+    print("========== Account Opening Form =========")
+    email = input("Wht is your email? \n")
+    fname = input("What is your firstname? \n")
+    lname = input("What is your lastname? \n")
+    password = input("Create password \n")
+
+    accountNumber = generateAccountNumber()
+
+    database[accountNumber] = {fname, lname, email, password}
+
+    print("Your account has been created.")
+    
+    login()
+
 
 def bankOperation():
     print("These are the available options:")
@@ -64,7 +78,8 @@ def bankOperation():
     elif selectedOption == '3':
         complaint()
 
-def loginInfo():
+def login():
+    print("Login to your account")
     name = input("What is your username?\n")
     if name in allowedUsers:
         password = input("What is your password?\n")
