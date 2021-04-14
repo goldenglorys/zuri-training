@@ -12,8 +12,6 @@
 import datetime
 import random
 
-allowedUsers = ["Zenith", "Edward"]
-allowedPassword = ["passwordZenith", "passwordEdward"]
 accountBalance = 0
 
 database = {}
@@ -57,15 +55,15 @@ def register():
 
     accountNumber = generateAccountNumber()
 
-    database[accountNumber] = {fname, lname, email, password}
+    database[accountNumber] =  [ fname, lname, email, password ]
 
-    print("Your account has been created.")
+    print("Your account has been created. %s" % accountNumber)
     
     login()
 
 
-def bankOperation():
-    print("These are the available options:")
+def bankOperation(user):
+    print("Welcome %s %s. These are the available options:" % ( user[0],  user[1] ))
     print("1. Withdrawal")
     print("2. Deposit")
     print("3. Complaint")
@@ -79,19 +77,29 @@ def bankOperation():
         complaint()
 
 def login():
-    print("Login to your account")
-    name = input("What is your username?\n")
-    if name in allowedUsers:
-        password = input("What is your password?\n")
-        userId = allowedUsers.index(name)
-        if password in allowedPassword[userId]:
-            print("Welcome %s" % name)
-            print("Login date and time is %s" % datetime.datetime.now())
-            bankOperation() 
-        else:
-            print("Password Incorrect, please try again")
-    else:
-        print("Name not found, please try again")
+    print("============== Login to your account ===============")
+    isLoginSuccessful = False
+    while isLoginSuccessful == False:
+        accountNumberFromuser = int(input("What is your account number? \n"))
+        password = input("What is your password?  \n")
+        for accountNumber, userDetails in database.items():
+            if accountNumber == accountNumberFromuser:
+                if userDetails[3] == password:
+                            isLoginSuccessful = True
+        print("Invalid account or passowrd")
+    bankOperation(userDetails)
+    # name = input("What is your username?\n")
+    # if name in allowedUsers:
+    #     password = input("What is your password?\n")
+    #     userId = allowedUsers.index(name)
+    #     if password in allowedPassword[userId]:
+    #         print("Welcome %s" % name)
+    #         print("Login date and time is %s" % datetime.datetime.now())
+    #         bankOperation() 
+    #     else:
+    #         print("Password Incorrect, please try again")
+    # else:
+    #     print("Name not found, please try again")
 
 print("Welcome to Mock bank!")
 init()
