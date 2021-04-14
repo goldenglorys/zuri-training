@@ -49,6 +49,20 @@ def transferWithin():
             print("Invalid account number, please try again")
             transferWithin()
 
+def trasferToOtherBank():
+    bank_name = input("Enter bank name: \n")
+    from_account = int(input("Enter account number to trasfer from: \n"))
+    to_account = int(input("Enter account number to transfer to: \n"))
+    amount = int(input("Enter amount: \n"))
+    description = input("Description: \n")
+    for accountNumber, userDetails in database.items():
+        print(accountNumber)
+        if accountNumber == from_account:
+            print("%s on it way to %s at %s bank." % (amount, to_account, bank_name))
+        else:
+            print("Invalid account number, please try again")
+            trasferToOtherBank()
+
 def register():
     print("========== Account Opening Form =========")
     email = input("Wht is your email? \n")
@@ -70,7 +84,8 @@ def bankOperation(user):
     print("1. Withdrawal")
     print("2. Deposit")
     print("3. Same bank trasfer")
-    print("4. Complaint")
+    print("4. Other bank trasfer")
+    print("5. Complaint")
     selectedOption = input("Please select an option:")
 
     if selectedOption == '1':
@@ -80,6 +95,8 @@ def bankOperation(user):
     elif selectedOption == '3':
         transferWithin()
     elif selectedOption == '4':
+        trasferToOtherBank()
+    elif selectedOption == '5':
         complaint()
     else:
         print("Invalid option selected")
